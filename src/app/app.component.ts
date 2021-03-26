@@ -12,9 +12,21 @@ export class AppComponent {
 
   todos$: Observable<Todo[]> = this.todoService.getAll();
 
+
+
   selectedTodo: Todo = new Todo();
 
   constructor(
     private todoService: TodoService,
   ) {}
+
+    onDelete(todo: Todo):void {
+     if(confirm('Are you sure?')) {
+       this.todoService.remove(todo).subscribe(
+       () => this.todos$ = this.todoService.getAll())
+
+
+     }
+    }
+
 }

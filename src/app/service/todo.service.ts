@@ -38,6 +38,8 @@ export class TodoService {
    * Delete a Todo.
    * @method: this.http.delete
    */
-
+  remove(todo: Todo): Observable<Todo> {
+    return this.http.delete<Todo>(`${this.endPoint}/${todo.id}`)
+  }
 
 }
