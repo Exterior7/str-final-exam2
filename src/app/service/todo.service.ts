@@ -32,7 +32,9 @@ export class TodoService {
    * Update a Todo.
    * @method: this.http.patch
    */
-
+  update(todo: Todo): Observable<Todo> {
+    return this.http.patch<Todo>(`${this.endPoint}/${todo.id}`, todo)
+  }
 
   /**
    * Delete a Todo.

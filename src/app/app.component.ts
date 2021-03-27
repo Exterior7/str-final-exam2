@@ -12,9 +12,13 @@ export class AppComponent {
 
   todos$: Observable<Todo[]> = this.todoService.getAll();
 
+  phrase: string = '';
 
+  key: string = 'title';
 
   selectedTodo: Todo = new Todo();
+
+  columnkey: string = '';
 
   constructor(
     private todoService: TodoService,
@@ -29,4 +33,18 @@ export class AppComponent {
      }
     }
 
+    onChangePhrase(event: Event):void {
+      this.phrase = (event.target as HTMLInputElement).value;
+      // this.phrase = event.target.value
+    }
+
+
+    onSort() {
+      this.columnkey = 'id';
+    }
+
+    onCheckbox(todo: Todo):void {
+      todo.active = !todo.active
+      this.todoService.update(todo).subscribe()
+    }
 }
