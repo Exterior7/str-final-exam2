@@ -26,7 +26,9 @@ export class TodoService {
    * Create a new Todo.
    * @method: this.http.post
    */
-
+  create(todo: Todo): Observable<Todo> {
+    return this.http.post<Todo>(`${this.endPoint}`, todo);
+  }
 
   /**
    * Update a Todo.

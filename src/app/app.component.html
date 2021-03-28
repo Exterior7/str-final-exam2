@@ -14,14 +14,16 @@
           <input id="title" name="title" [(ngModel)]="selectedTodo.title" type="text" class="form-control" required
             pattern=".{5,}" #todoTitle="ngModel">
             <small [hidden]="todoTitle.valid || todoTitle.pristine" id="title" class="form-text text-muted">Az e-mail kitöltése kötelező, valid e-mail címmel.</small>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <!-- Kötelező kitölteni, kisbetűk, nagybetűk, számok, szóköz, legalább 25 karakter. -->
+            <textarea name="description" [(ngModel)]="selectedTodo.description" class="form-control" required
+            pattern=".{25,}" #todoDescription="ngModel">
+          </textarea>
+          <small [hidden]="todoDescription.valid || todoDescription.pristine" id="title" class="form-text text-muted">A Description maximum 25 karakter lehet</small>
         </div>
-        <div class="form-group">
-          <label>Description</label>
-          <!-- Kötelező kitölteni, kisbetűk, nagybetűk, számok, szóköz, legalább 25 karakter. -->
-          <textarea name="description" [(ngModel)]="selectedTodo.description" class="form-control">
-            </textarea>
-        </div>
-        <button class="btn btn-primary btn-block mt-2">
+        <button (click)="onCreate(selectedTodo)" [disabled]="todoForm.invalid" class="btn btn-primary btn-block mt-2">
           <i class="fa fa-save"></i>
         </button>
       </form>

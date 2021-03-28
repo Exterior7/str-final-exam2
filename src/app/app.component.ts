@@ -45,6 +45,12 @@ export class AppComponent {
 
     onCheckbox(todo: Todo):void {
       todo.active = !todo.active
-      this.todoService.update(todo).subscribe()
+      this.todoService.update(todo).subscribe();
+
+    }
+    onCreate(todo: Todo):void {
+      this.todoService.create(todo).subscribe(
+        () => this.todos$ = this.todoService.getAll()
+      );
     }
 }
